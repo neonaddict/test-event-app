@@ -1,0 +1,17 @@
+<% provide(:title, @event.name) %>
+<div class="container">
+  <h1><%= @event.name %></h1>   
+  <div class="card-group event-card row">
+    <div class="card event-img col-md-6">
+      <%= image_tag @event.image.url %>
+    </div>
+    <div class="card event-info col-md-6">
+      <%= @event.date %>, <%= @event.begin_time %>
+      <%= @event.region %>, <%= @event.city %>
+      <%= @event.place %>
+    </div>
+  </div>
+  <div class="card event-desc col-md-12">
+    <%= @event.description %>
+  </div>  
+</div>

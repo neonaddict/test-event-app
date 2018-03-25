@@ -1,0 +1,12 @@
+<% provide(:title, '') %>
+<h1>Все мероприятия</h1>
+
+<div class="events-container">
+  <div class="row">
+    <% @events.each do |event| %>
+      <%= render event %>
+    <% end %>
+  </div>
+</div>
+<%= will_paginate @events, list_classes: %w(pagination justify-content-center) %>
+
