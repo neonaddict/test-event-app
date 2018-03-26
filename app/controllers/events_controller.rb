@@ -2,12 +2,13 @@ class EventsController < ApplicationController
     #before_action :user_is_admin, only: [:index, :edit, :update, :destroy]
 
     def index
-      @events= Event.paginate(page: params[:page])
+      @events= Event.paginate(page: params[:page]).order('date DESC')
       #@events = Event.all
     end
 
     def show
       @event = Event.find(params[:id])
+      @organizer = Organizer.find(@event.organizer_id)
     end
 
     def new

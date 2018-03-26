@@ -8,4 +8,9 @@ module ApplicationHelper
          page_title + " | " + base_title
        end
    end
+
+   def error_msg(controller)
+    controller.controller_name == 'events'? @event : @organizer
+   end
+
 end

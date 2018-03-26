@@ -2,12 +2,12 @@
 <h1><%= @event.name %></h1>   
 <div class="card-group event-card row">
   <div class="card event-img col-md-6">
-    <!-- <%= image_tag @event.image.url %> !-->
+    <!-- <%# image_tag @event.image.url %> !-->
   </div>
   <div class="card event-info col-md-6">
     <%= @event.date %>, <%= @event.date %>
     <%= @event.region %>, <%= @event.city %>
-    <%= @event.address %>
+    <%= @event.address %>, <%= link_to @organizer.name, @organizer %>
   </div>
 </div>
 <div class="card event-desc col-md-12">

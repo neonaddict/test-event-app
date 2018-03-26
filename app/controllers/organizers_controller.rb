@@ -3,14 +3,16 @@ class OrganizersController < ApplicationController
 
     def show
       @organizer = Organizer.find(params[:id])
+      @events = Event.where(organizer_id: @organizer.id)
     end
 
     def new
       @organizer = Organizer.new
+      @events = @organizer.events
     end
 
     def create
-      @organizer = Organizer.new(event_params)
+      @organizer = Organizer.new(organizer_params)
       if @organizer.save
         flash[:success] = "Successfully created!"
         redirect_to @organizer
@@ -25,7 +27,7 @@ class OrganizersController < ApplicationController
 
     def update
       @organizer = Organizer.find(params[:id])
-      if @organizer.update_attributes(event_params)
+      if @organizer.update_attributes(organizer_params)
         flash[:success] = "Organizer updated"
         redirect_to @organizer
       else
@@ -34,14 +36,14 @@ class OrganizersController < ApplicationController
     end
 
     def destroy
-      Event.find(params[:id]).destroy
+      Organizer.find(params[:id]).destroy
       flash[:success] = "Organizer deleted"
       redirect_to events_url
     end
   
     private
-      def event_params
-        params.require(:event).permit(:name, :description)
+      def organizer_params
+        params.require(:organizer).permit(:name, :description, :events)
       end
 
 end
