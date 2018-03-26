@@ -3,7 +3,10 @@
         <div class="card-body">
             <!-- <%# image_tag event.image.url(:medium), class: "card-img-top" %> !-->
             <h5 class="card-title"><%= link_to event.name, event %></h5>
-            <p class="card-text"><%= event.description %></p>
+            <p class="card-text">
+                <%= l(event.date, format: '%d %B %Y, %-H:%M') %><br>
+                <%= event.region %>, <%= event.city %>, <%= event.address %>
+            </p>
             <a class="card-link"><%= event.id %></a>
         </div>
     </div>

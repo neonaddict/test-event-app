@@ -5,9 +5,8 @@
     <!-- <%# image_tag @event.image.url %> !-->
   </div>
   <div class="card event-info col-md-6">
-    <%= @event.date %>, <%= @event.date %>
-    <%= @event.region %>, <%= @event.city %>
-    <%= @event.address %>, <%= link_to @organizer.name, @organizer %>
+    <%= l(@event.date, format: '%d %A %Y, %-H:%M') %>
+    <%= @event.region %>, <%= @event.city %>, <%= @event.address %> <%= link_to @organizer.name, @organizer %>
   </div>
 </div>
 <div class="card event-desc col-md-12">

@@ -23,6 +23,11 @@ gem 'bootstrap', '~> 4.0.0'
 gem 'will_paginate',           '3.1.6'
 gem 'will_paginate-bootstrap4'
 gem 'jquery-rails'
+gem 'material_icons'
+
+# For locales
+gem 'rails-i18n'
+
 # For images
 gem "paperclip", "~> 6.0.0"
 # See https://github.com/rails/execjs#readme for more supported runtimes
