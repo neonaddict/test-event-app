@@ -5,8 +5,16 @@
     <!-- <%# image_tag @event.image.url %> !-->
   </div>
   <div class="card event-info col-md-6">
-    <%= l(@event.date, format: '%d %A %Y, %-H:%M') %>
-    <%= @event.region %>, <%= @event.city %>, <%= @event.address %> <%= link_to @organizer.name, @organizer %>
+    <div class="block-info event-date">  
+    <%= material_icon.date_range.md_36 %><span><%= l(@event.date, format: '%d %A %Y, %-H:%M') %></span>
+    </div>
+    <div class="block-info event-address">
+    <%= material_icon.place.md_36 %><span><%= @event.region %>, <%= @event.city %>, <%= @event.address %></span>
+    </div>
+    <div class="block-info event-link"> 
+    <%= material_icon.link.md_36 %><span><%= link_to @event.link, @event.link  %></span>
+    </div>
+    <%= link_to @organizer.name, @organizer %>
   </div>
 </div>
 <div class="card event-desc col-md-12">
