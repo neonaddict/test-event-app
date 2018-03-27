@@ -13,6 +13,14 @@
                     <%= link_to "Help", '#', class: "nav-link" %>
                 </li>
             </ul>
+            <% if logged_in? %>
+            <ul class="navbar-nav ml-auto">
+                <h6>Hello, Admin!</h6>
+                <li class="nav-item">
+                    <%= link_to "Выйти", logout_path, method: :delete, class: "btn btn-info" %>
+                </li>
+            </ul>
+            <% end %>
         </div>
     </nav>
     <nav class="navbar navbar-expand-sm navbar-primary bg-light bottom">

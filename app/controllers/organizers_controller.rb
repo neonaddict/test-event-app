@@ -1,5 +1,5 @@
 class OrganizersController < ApplicationController
-    #before_action :user_is_admin, only: [:index, :edit, :update, :destroy]
+    before_action :admin_is_logged_in, only: [:index, :edit, :update, :destroy]
 
     def show
       @organizer = Organizer.find(params[:id])
@@ -45,6 +45,14 @@ class OrganizersController < ApplicationController
       def organizer_params
         params.require(:organizer).permit(:name, :description, :events)
       end
+
+      # Confirms that admin is logged in.
+      def admin_is_logged_in
+        unless logged_in?
+          flash[:danger] = "Please log in."
+          redirect_to root_url
+        end
+      end 
 
 end
 

@@ -1,5 +1,5 @@
 class EventsController < ApplicationController
-    #before_action :user_is_admin, only: [:index, :edit, :update, :destroy]
+    before_action :admin_is_logged_in, only: [:new, :edit, :update, :destroy]
 
     def index
       @events= Event.paginate(page: params[:page]).order('date DESC')
@@ -50,6 +50,13 @@ class EventsController < ApplicationController
         params.require(:event).permit(:name, :region, :city, :address,
              :date, :organizer_id, :description, :link
              )
-      end
-
+      end 
+      
+      # Confirms that admin is logged in.
+      def admin_is_logged_in
+        unless logged_in?
+          flash[:danger] = "Please log in."
+          redirect_to root_url
+        end
+      end 
 end
