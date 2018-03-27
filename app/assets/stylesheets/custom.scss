@@ -29,9 +29,37 @@ body {
   margin-top: 0;
 }
 
-.block-info {
-  vertical-align: middle;
+.block-info, .navbar-admin, .event-form {
+  display:flex;
+  flex-direction: row;
+  align-items: center;
+  label, input, select {
+    margin-bottom: 0.5em;
+  }
+  label, input, select:not(#event_date_1i):not(#event_date_2i):not(#event_date_3i):not(#event_date_4i):not(#event_date_5i) {
+    display: block;
+  }
+  span {
+    padding: 0.8em 0 0.8em 0.5em;
+  }
   i {
     margin-right: 25px;
+    margin-left: 0.5em;
   } 
+}
+
+.navbar-greeting {
+  display:flex;
+  flex-direction: row;
+  align-items: center;
+  .greeting {
+    margin-right: 1em;
+    color: antiquewhite;
+  }
+}
+
+header .top {
+  text-transform: uppercase;
+  font-weight: 700;
+  vertical-align: middle;
 }

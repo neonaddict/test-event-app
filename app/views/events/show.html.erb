@@ -1,5 +1,21 @@
 <% provide(:title, @event.name) %>
-<h1><%= @event.name %></h1>   
+<div class="row">
+<h1><%= @event.name %></h1>
+<% if logged_in? %>
+    <ul class="navbar-nav navbar-admin ml-auto">
+      <li class="nav-item">
+        <%= link_to edit_event_path, title: 'Изменить мероприятие' do %>
+          <%= material_icon.mode_edit.md_36 %>
+        <% end %>
+      </li>
+      <li class="nav-item">
+        <%= link_to @event, method: :delete, title: 'Удалить мероприятие', data: { confirm: 'Вы уверены?' }  do %>
+          <%= material_icon.delete.md_36 %>
+        <% end %>
+      </li>
+    </ul>
+<% end %>   
+</div>
 <div class="card-group event-card row">
   <div class="card event-img col-md-6">
     <!-- <%# image_tag @event.image.url %> !-->
@@ -12,9 +28,11 @@
     <%= material_icon.place.md_36 %><span><%= @event.region %>, <%= @event.city %>, <%= @event.address %></span>
     </div>
     <div class="block-info event-link"> 
-    <%= material_icon.link.md_36 %><span><%= link_to @event.link, @event.link  %></span>
+    <%= material_icon.link.md_36 %><span><%= link_to @event.link, @event.link, target: '_blank' %></span>
     </div>
-    <%= link_to @organizer.name, @organizer %>
+    <div class="block-info event-organizer">
+      <%= material_icon.face.md_36 %><span><%= link_to @organizer.name, @organizer %></span>
+    </div>
   </div>
 </div>
 <div class="card event-desc col-md-12">
