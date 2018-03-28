@@ -32,7 +32,8 @@
       <%= f.label :link %>
       <%= f.text_field :link, class: 'form-control' %>
 
-      <!-- <%= f.file_field :image %> !-->
+      <%= f.label 'Изображение' %>
+      <%= f.file_field :event_image %>
       
       <%= f.submit yield(:button_text), class: "btn btn-primary" %>
 
