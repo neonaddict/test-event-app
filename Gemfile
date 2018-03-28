@@ -29,7 +29,11 @@ gem 'material_icons'
 gem 'rails-i18n'
 
 # For images
-gem "paperclip", "~> 6.0.0"
+gem 'paperclip', '~> 6.0.0'
+
+#For ICS-files
+gem 'icalendar'
+
 # See https://github.com/rails/execjs#readme for more supported runtimes
 # gem 'therubyracer', platforms: :ruby
 

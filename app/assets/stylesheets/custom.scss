@@ -25,11 +25,7 @@ body {
     margin-bottom: 0 !important;
   }
 
-.navbar.bottom {
-  margin-top: 0;
-}
-
-.block-info, .navbar-admin, .event-form {
+.block-info:not(.btn-dark), .navbar-admin, .event-form {
   display:flex;
   flex-direction: row;
   align-items: center;
@@ -59,7 +55,17 @@ body {
 }
 
 header .top {
+  display:flex;
+  flex-direction: row;
+  align-items: center;
   text-transform: uppercase;
   font-weight: 700;
   vertical-align: middle;
+  .navbar-brand {
+    padding-top: 0.5em;
+  }
+}
+
+header .bottom {
+  padding-top: 1.5em;
 }

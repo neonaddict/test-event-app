@@ -11,10 +11,15 @@ class EventsController < ApplicationController
       @organizer = Organizer.find(@event.organizer_id)
     end
 
+    def ics
+      @event = Event.find(params[:id])
+      @ics = ics_create(@event)
+    end
+
     def new
       @event = Event.new
     end
-
+    
     def create
       @event = Event.new(event_params)
       if @event.save

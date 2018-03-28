@@ -33,6 +33,7 @@
     <div class="block-info event-organizer">
       <%= material_icon.face.md_36 %><span><%= link_to @organizer.name, @organizer %></span>
     </div>
+    <%= link_to 'Скачать ICS', ics_path_url, class: 'btn btn-dark'%>
   </div>
 </div>
 <div class="card event-desc col-md-12">
