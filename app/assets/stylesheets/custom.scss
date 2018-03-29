@@ -69,3 +69,15 @@ header .top {
 header .bottom {
   padding-top: 1.5em;
 }
+
+.button-group form{
+  margin-left: 0.5em;
+}
+
+.card-img-left {
+  border-bottom-left-radius: calc(.25rem - 1px);
+  border-top-left-radius: calc(.25rem - 1px);
+  float: left;
+  padding-right: 1em;
+  margin-bottom: -1.25em;
+}

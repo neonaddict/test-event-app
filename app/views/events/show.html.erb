@@ -33,7 +33,17 @@
     <div class="block-info event-organizer">
       <%= material_icon.face.md_36 %><span><%= link_to @organizer.name, @organizer %></span>
     </div>
-    <%= link_to 'Скачать ICS', ics_path_url, class: 'btn btn-dark'%>
+    <div class="block-info button-group ml-auto">
+      <%# button_to 'Подписаться', subscribe_path_url, method: :get, class: 'btn btn-primary', remote: true, data:{ "data_toggle": "modal", "data_target": "#modal-window"}%>
+      <%= button_to 'Скачать ICS', ics_path_url, method: :get, class: 'btn btn-success'%>
+    </div>
+    <%= form_tag(subscribe_path_url, method: :post) do %>
+      <%= label_tag("Подписаться на обновления по email") %>
+      <%= text_field_tag(:email) %>
+      <%= button_tag(type: "submit", class: "btn btn-default") do %>
+        <%= material_icon.done %>
+      <% end %>
+    <% end %>
   </div>
 </div>
 <div class="card event-desc col-md-12">

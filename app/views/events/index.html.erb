@@ -1,11 +1,13 @@
 <% provide(:title, '') %>
 <div class="row navbar-admin">
   <h1>Все мероприятия</h1>
-  <span class="ml-auto">
-    <%= link_to '/events/new', title: 'Добавить мероприятие' do %>
-              <%= material_icon.add.md_36 %>
-    <% end %>
-  </span>
+  <% if logged_in? %>
+    <span class="ml-auto">
+      <%= link_to '/events/new', title: 'Добавить мероприятие' do %>
+        <%= material_icon.add.md_36 %>
+      <% end %>
+    </span>
+  <% end %>  
 </div>
 <div class="events-container">
   <div class="row">

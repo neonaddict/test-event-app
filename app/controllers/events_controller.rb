@@ -3,17 +3,11 @@ class EventsController < ApplicationController
 
     def index
       @events= Event.paginate(page: params[:page]).order('date DESC')
-      #@events = Event.all
     end
 
     def show
       @event = Event.find(params[:id])
       @organizer = Organizer.find(@event.organizer_id)
-    end
-
-    def ics
-      @event = Event.find(params[:id])
-      @ics = ics_create(@event)
     end
 
     def new
@@ -48,6 +42,18 @@ class EventsController < ApplicationController
       Event.find(params[:id]).destroy
       flash[:success] = "Event deleted"
       redirect_to events_url
+    end
+
+    def ics
+      @event = Event.find(params[:id])
+      ics_create(@event)
+    end
+
+    def subscribe
+      #puts params.inspect
+      flash[:success] = "Успешно подписаны на напоминания! #{params[:email]}"
+      SendEmailWorker.perform_async(params[:email], params[:id])
+      redirect_back fallback_location: root_path
     end
   
     private

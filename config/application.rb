@@ -20,6 +20,8 @@ module TestEventApp
     # Set default locale to something other than :en
     I18n.default_locale = :ru
     
+    config.active_job.queue_adapter = :sidekiq
+    Sidekiq::Extensions.enable_delay!
     # Settings in config/environments/* take precedence over those specified here.
     # Application configuration should go into files in config/initializers
     # -- all .rb files in that directory are automatically loaded.
