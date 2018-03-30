@@ -16,7 +16,7 @@
     </ul>
 <% end %>   
 </div>
-<div class="card-group event-card row">
+<div class="event-card row">
   <div class="card event-img col-md-6">
     <%= image_tag @event.event_image.url(:medium) %>
   </div>
@@ -33,19 +33,19 @@
     <div class="block-info event-organizer">
       <%= material_icon.face.md_36 %><span><%= link_to @organizer.name, @organizer %></span>
     </div>
-    <div class="block-info button-group ml-auto">
-      <%# button_to 'Подписаться', subscribe_path_url, method: :get, class: 'btn btn-primary', remote: true, data:{ "data_toggle": "modal", "data_target": "#modal-window"}%>
-      <%= button_to 'Скачать ICS', ics_path_url, method: :get, class: 'btn btn-success'%>
-    </div>
-    <%= form_tag(subscribe_path_url, method: :post) do %>
-      <%= label_tag("Подписаться на обновления по email") %>
-      <%= text_field_tag(:email) %>
-      <%= button_tag(type: "submit", class: "btn btn-default") do %>
-        <%= material_icon.done %>
+    <div class="block-info button-group ml-auto form-row">
+      <%= form_tag(subscribe_path_url, method: :post, class: 'form-inline') do %>
+        <%= label_tag("Напомнить мне") %>
+        <%= text_field_tag :email, nil, placeholder: 'email' %>
+        <%= button_tag(type: "submit", class: "btn btn-default") do %>
+          <%= material_icon.done %>
+        <% end %>
       <% end %>
-    <% end %>
+      <%= button_to 'Скачать ICS', ics_path_url, method: :get, class: 'btn btn-success form-inline'%>
+    </div>
   </div>
 </div>
-<div class="card event-desc col-md-12">
+<div class="card event-desc d-flex col-md-10 justify-content-center">
+<h1>Описание мероприятия</h1>
   <%= @event.description %>
 </div>  

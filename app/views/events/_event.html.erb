@@ -1,13 +1,16 @@
 <div class="col-md-6">
-    <div class="card">
-        <div class="card-body">
-            <%= image_tag event.event_image.url(:thumb), class: "card-img-left" %>
-            <h5 class="card-title"><%= link_to event.name, event %></h5>
-            <p class="card-text">
-                <%= l(event.date, format: '%d %B %Y, %-H:%M') %><br>
-                <%= event.region %>, <%= event.city %>, <%= event.address %>
-            </p>
-            <a class="card-link"><%= event.id %></a>
+    <div class="card h-100">
+        <div class="row no-gutters">
+            <div class="col-auto px-2">
+                <%= image_tag event.event_image.url(:thumb), class: "card-img-left" %>
+            </div>
+            <div class="col">
+                <h5 class="card-title"><%= link_to event.name, event %></h5>
+                <p class="card-text">
+                    <%= l(event.date, format: '%d %B %Y, %-H:%M') %><br>
+                    <p><%= event.city %>, <%= event.address %></p>
+                </p>
+            </div>
         </div>
     </div>
 </div>

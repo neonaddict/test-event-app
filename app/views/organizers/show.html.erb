@@ -1,31 +1,39 @@
 <% provide(:title, @organizer.name) %>
-<div class="row">
-  <h1><%= @organizer.name %></h1>
-  <% if logged_in? %>
-    <ul class="navbar-nav navbar-admin ml-auto">
-        <li class="nav-item">
-          <%= link_to edit_organizer_path, title: 'Изменить организатора' do %>
-            <%= material_icon.mode_edit.md_36 %>
-          <% end %>
-        </li>
-        <li class="nav-item">
-          <%= link_to @organizer, method: :delete, title: 'Удалить организатора', data: { confirm: 'Вы уверены?' }  do %>
-            <%= material_icon.delete.md_36 %>
-          <% end %>
-        </li>
-    </ul>
-  <% end %> 
-</div>
 <div class="container">  
+  <div class="row">
+    <h1 class="organizer-name"><%= @organizer.name %></h1>
+    <% if logged_in? %>
+      <ul class="navbar-nav navbar-admin ml-auto">
+          <li class="nav-item">
+            <%= link_to edit_organizer_path, title: 'Изменить организатора' do %>
+              <%= material_icon.mode_edit.md_36 %>
+            <% end %>
+          </li>
+          <li class="nav-item">
+            <%= link_to @organizer, method: :delete, title: 'Удалить организатора', data: { confirm: 'Вы уверены?' }  do %>
+              <%= material_icon.delete.md_36 %>
+            <% end %>
+          </li>
+      </ul>
+    <% end %> 
+  </div>
   <div class="card event-desc col-md-12">
-    <%= @organizer.description %>
+    <h2 class="card-title">Об организаторе</h2>
+    <div class="card-body">
+      <%= @organizer.description %>
+    </div>
   </div>  
   <div class="card-group event-card row">
-    <div class="card event-info col-md-6">
+    <div class="card event-info col-md-12">
       <h2>Организованные мероприятия: </h2>
+      <div class="row">
       <% @events.each do |event| %>
-        <h5><%= event.name %></h5>
-      <% end  %>
+        <%= link_to event, class: 'col-md-6 border' do %>
+          <%= event.name %>,
+          <%= l(event.date, format: '%d %B %Y, %-H:%M') %>
+        <% end %>
+      <% end %>
+      </div>
     </div>
   </div>
 </div>

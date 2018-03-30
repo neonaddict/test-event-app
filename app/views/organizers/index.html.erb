@@ -1,0 +1,19 @@
+<% provide(:title, '') %>
+<div class="row navbar-admin">
+  <h1>Организаторы</h1>
+  <% if logged_in? %>
+    <span class="ml-auto">
+      <%= link_to '/organizers/new', title: 'Добавить мероприятие' do %>
+        <%= material_icon.add.md_36 %>
+      <% end %>
+    </span>
+  <% end %>  
+</div>
+<div class="container-fluid orgs-container">
+  <div class="row org-cards">
+    <% @organizers.each do |organizer| %>
+      <%= render organizer %>
+    <% end %>
+  </div>
+</div>
+<%= will_paginate @organizers, list_classes: %w(pagination justify-content-center) %>

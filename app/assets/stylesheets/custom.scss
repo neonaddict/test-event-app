@@ -25,6 +25,14 @@ body {
     margin-bottom: 0 !important;
   }
 
+  a:hover{
+    text-decoration: none;
+  }
+
+.card-group {
+  align-items: center;
+}
+
 .block-info:not(.btn-dark), .navbar-admin, .event-form {
   display:flex;
   flex-direction: row;
@@ -74,10 +82,36 @@ header .bottom {
   margin-left: 0.5em;
 }
 
+.pagination {
+  margin-top: 2.0em;
+}
+
+.event-cards {
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+
+.event-cards .col-md-6 { 
+  margin-top: 1em;  
+}
+
+.event-desc {
+  margin: auto;
+}
+
+
 .card-img-left {
-  border-bottom-left-radius: calc(.25rem - 1px);
-  border-top-left-radius: calc(.25rem - 1px);
-  float: left;
-  padding-right: 1em;
-  margin-bottom: -1.25em;
+  width:100%;
+  height:100%;
+  object-fit: cover;
+  overflow: hidden;
+}
+
+footer li{
+  text-transform: uppercase;
+  font-weight: 700;
+  padding-bottom: 1em;
+  a {
+    color: lightgrey;
+  }
 }

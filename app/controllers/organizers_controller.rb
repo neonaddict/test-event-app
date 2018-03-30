@@ -1,9 +1,13 @@
 class OrganizersController < ApplicationController
-    before_action :admin_is_logged_in, only: [:index, :edit, :update, :destroy]
+    before_action :admin_is_logged_in, only: [:new, :edit, :update, :destroy]
+
+    def index
+      @organizers= Organizer.paginate(page: params[:page], per_page: 18)
+    end
 
     def show
-      @organizer = Organizer.find(params[:id])
-      @events = Event.where(organizer_id: @organizer.id)
+      @organizer = Organizer.find_by(id: params[:id])
+      @events = Event.where(organizer_id: @organizer.id).order(date: :desc)
     end
 
     def new

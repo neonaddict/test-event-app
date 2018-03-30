@@ -1,13 +1,17 @@
 class EventsController < ApplicationController
     before_action :admin_is_logged_in, only: [:new, :edit, :update, :destroy]
-
+    
     def index
-      @events= Event.paginate(page: params[:page]).order('date DESC')
+      @events= Event.paginate(page: params[:page], per_page: 18).order('date DESC')
     end
 
     def show
-      @event = Event.find(params[:id])
-      @organizer = Organizer.find(@event.organizer_id)
+      if params[:id].to_i != 0 
+        @event = Event.find_by(id: params[:id])
+        @organizer = Organizer.find_by(id: @event.organizer_id)
+      else
+        redirect_to root_path
+      end
     end
 
     def new
@@ -29,7 +33,7 @@ class EventsController < ApplicationController
     end
 
     def update
-      @event = Event.find(params[:id])
+      @event = Event.find_by(id: params[:id])
       if @event.update_attributes(event_params)
         flash[:success] = "Event updated"
         redirect_to @event
@@ -39,21 +43,38 @@ class EventsController < ApplicationController
     end
 
     def destroy
-      Event.find(params[:id]).destroy
+      Event.find_by(id: params[:id]).destroy
       flash[:success] = "Event deleted"
       redirect_to events_url
     end
 
     def ics
-      @event = Event.find(params[:id])
+      @event = Event.find_by(id: params[:id])
       ics_create(@event)
     end
 
     def subscribe
-      #puts params.inspect
       flash[:success] = "Успешно подписаны на напоминания! #{params[:email]}"
       SendEmailWorker.perform_async(params[:email], params[:id])
       redirect_back fallback_location: root_path
+    end
+
+    def past
+      @events = Event.where('date < ?', DateTime.now).paginate(page: params[:page]).order('date DESC')
+      render 'index'
+    end
+
+    def upcoming
+      @events = Event.where('date > ?', DateTime.now).paginate(page: params[:page]).order('date DESC')
+      render 'index'
+    end
+
+    def filter
+      @events = Event.city_filter(params[:city]).month_filter(params[:month]).organizer_filter(params[:organizer_id]).paginate(page: params[:page]).order('date DESC')
+      if @events.blank?
+        flash.now[:warning] = 'Извините, ничего не найдено по вашему запросу :('
+      end
+      render 'index'
     end
   
     private
