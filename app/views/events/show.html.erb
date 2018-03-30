@@ -25,13 +25,20 @@
     <%= material_icon.date_range.md_36 %><span><%= l(@event.date, format: '%d %A %Y, %-H:%M') %></span>
     </div>
     <div class="block-info event-address">
-    <%= material_icon.place.md_36 %><span><%= @event.region %>, <%= @event.city %>, <%= @event.address %></span>
+    <%= material_icon.place.md_36 %><span><%= @event.city %>, <%= @event.address %></span>
     </div>
     <div class="block-info event-link"> 
     <%= material_icon.link.md_36 %><span><%= link_to @event.link, @event.link, target: '_blank' %></span>
     </div>
     <div class="block-info event-organizer">
-      <%= material_icon.face.md_36 %><span><%= link_to @organizer.name, @organizer %></span>
+      <%= material_icon.face.md_36 %>
+      <span>
+      <%=
+       link_to_if(@organizer.blank?, '') do
+            link_to @organizer.name, @organizer
+         end
+       %>
+       </span>
     </div>
     <div class="block-info button-group ml-auto form-row">
       <%= form_tag(subscribe_path_url, method: :post, class: 'form-inline') do %>

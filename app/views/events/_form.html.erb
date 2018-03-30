@@ -3,22 +3,22 @@
     <%= form_for @event, html: { multipart: true } do |f| %>
       <%= render 'shared/error_messages', object: @event %>
 
-      <%= f.label :name %>
+      <%= f.label 'Название' %>
       <%= f.text_field :name, class: 'form-control' %>
       
       <%# f.label :region %>
       <%# f.text_field :region, class: 'form-control' %>
 
-      <%= f.label :city %>
+      <%= f.label 'Город' %>
       <%= f.text_field :city, class: 'form-control' %>
 
-      <%= f.label :address %>
+      <%= f.label 'Адрес' %>
       <%= f.text_field :address, class: 'form-control' %>
 
-      <%= f.label :date %>
+      <%= f.label 'Дата и время' %>
       <%= f.datetime_select :date, class: 'form-control' %>
 
-      <%= f.label :organizer %>
+      <%= f.label 'Организатор' %>
       <span class="row">
         <%= f.collection_select :organizer_id, Organizer.all, :id, :name, class: 'form-control' %>
         <%= link_to '/organizers/new', title: 'Добавить нового организатора' do %>
@@ -26,10 +26,10 @@
         <% end %>
       </span>
 
-      <%= f.label :description %>
+      <%= f.label 'Описание' %>
       <%= f.text_area :description, class: 'form-control' %>
 
-      <%= f.label :link %>
+      <%= f.label 'Ссылка' %>
       <%= f.text_field :link, class: 'form-control' %>
 
       <%= f.label 'Изображение' %>

@@ -10,7 +10,7 @@ class SessionsController < ApplicationController
       flash[:success] = 'Hello, admin!'
       redirect_to '/events'
     else
-      flash.now[:danger] = 'Invalid email/password combination'
+      flash.now[:danger] = 'Неправильный email/пароль'
       render 'new'
     end
   end

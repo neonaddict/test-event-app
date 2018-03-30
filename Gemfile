@@ -31,12 +31,15 @@ gem 'rails-i18n'
 
 # For images
 gem 'paperclip', '~> 6.0.0'
+gem 'aws-sdk', '~> 2.3'
 
 #For ICS-files
 gem 'icalendar'
 
-#For asynchronous email's
+#For mailer worker
 gem 'sidekiq'
+
+gem 'figaro'
 
 # See https://github.com/rails/execjs#readme for more supported runtimes
 # gem 'therubyracer', platforms: :ruby

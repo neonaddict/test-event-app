@@ -6,7 +6,7 @@ class OrganizersController < ApplicationController
     end
 
     def show
-      @organizer = Organizer.find_by(id: params[:id])
+      @organizer = Organizer.find_by(id: params[:id]) 
       @events = Event.where(organizer_id: @organizer.id).order(date: :desc)
     end
 
@@ -18,7 +18,7 @@ class OrganizersController < ApplicationController
     def create
       @organizer = Organizer.new(organizer_params)
       if @organizer.save
-        flash[:success] = "Successfully created!"
+        flash[:success] = 'Организатор успешно создан!'
         redirect_to @organizer
       else
         render 'new'
@@ -32,7 +32,7 @@ class OrganizersController < ApplicationController
     def update
       @organizer = Organizer.find(params[:id])
       if @organizer.update_attributes(organizer_params)
-        flash[:success] = "Organizer updated"
+        flash[:success] = 'Организатор успешно изменен'
         redirect_to @organizer
       else
         render 'edit'
@@ -41,7 +41,7 @@ class OrganizersController < ApplicationController
 
     def destroy
       Organizer.find(params[:id]).destroy
-      flash[:success] = "Organizer deleted"
+      flash[:success] = 'Организатор удален'
       redirect_to events_url
     end
   
@@ -53,7 +53,7 @@ class OrganizersController < ApplicationController
       # Confirms that admin is logged in.
       def admin_is_logged_in
         unless logged_in?
-          flash[:danger] = "Please log in."
+          flash[:danger] = 'Доступ закрыт'
           redirect_to root_url
         end
       end 

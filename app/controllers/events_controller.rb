@@ -21,7 +21,7 @@ class EventsController < ApplicationController
     def create
       @event = Event.new(event_params)
       if @event.save
-        flash[:success] = "Successfully created!"
+        flash[:success] = 'Мероприятие успешно создано!'
         redirect_to @event
       else
         render 'new'
@@ -35,7 +35,7 @@ class EventsController < ApplicationController
     def update
       @event = Event.find_by(id: params[:id])
       if @event.update_attributes(event_params)
-        flash[:success] = "Event updated"
+        flash[:success] = 'Мероприятие изменено'
         redirect_to @event
       else
         render 'edit'
@@ -44,7 +44,7 @@ class EventsController < ApplicationController
 
     def destroy
       Event.find_by(id: params[:id]).destroy
-      flash[:success] = "Event deleted"
+      flash[:success] = 'Мероприятие удалено'
       redirect_to events_url
     end
 
