@@ -10,7 +10,7 @@ module EventsHelper
           e.dtend       = ev.date
           e.summary     = ev.name
           e.description = ev.description
-          e.location    = "#{ev.region}, #{ev.city}, #{ev.address}"
+          e.location    = "#{ev.city}, #{ev.address}"
         end
         send_data cal.to_ical, type: 'text/calendar', disposition: 'attachment', filename: filename
     end
