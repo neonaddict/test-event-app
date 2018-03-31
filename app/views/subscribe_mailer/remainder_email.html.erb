@@ -4,14 +4,13 @@
     <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
   </head>
   <body>
-    <h1>Не забудьте о мероприятии <%= @event.name %></h1>
+    <h1>Не забудьте о мероприятии <strong><%= @event.name %></strong></h1>
     <p>
-      Дата проведения: <%= @event.date %><br>
+      Дата проведения: <strong><%= @event.date %></strong><br>
       Место проведения: <%= @event.city %>, <%= @event.address %>
     </p>
     <p>
-      <%= @url %>
+      <%= link_to @url, @url %>
     </p>
-    <p>Thanks for joining and have a great day!</p>
   </body>
 </html>

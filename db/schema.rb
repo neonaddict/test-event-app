@@ -10,41 +10,39 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180328170029) do
-
+ActiveRecord::Schema.define(version: 20_180_328_170_029) do
   # These are extensions that must be enabled in order to support this database
-  enable_extension "plpgsql"
+  enable_extension 'plpgsql'
 
-  create_table "admin_users", force: :cascade do |t|
-    t.string "email"
-    t.string "password_digest"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+  create_table 'admin_users', force: :cascade do |t|
+    t.string 'email'
+    t.string 'password_digest'
+    t.datetime 'created_at', null: false
+    t.datetime 'updated_at', null: false
   end
 
-  create_table "events", force: :cascade do |t|
-    t.string "name"
-    t.string "region"
-    t.string "city"
-    t.string "address"
-    t.datetime "date"
-    t.bigint "organizer_id"
-    t.text "description"
-    t.string "link"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.string "event_image_file_name"
-    t.string "event_image_content_type"
-    t.integer "event_image_file_size"
-    t.datetime "event_image_updated_at"
-    t.index ["organizer_id"], name: "index_events_on_organizer_id"
+  create_table 'events', force: :cascade do |t|
+    t.string 'name'
+    t.string 'region'
+    t.string 'city'
+    t.string 'address'
+    t.datetime 'date'
+    t.bigint 'organizer_id'
+    t.text 'description'
+    t.string 'link'
+    t.datetime 'created_at', null: false
+    t.datetime 'updated_at', null: false
+    t.string 'event_image_file_name'
+    t.string 'event_image_content_type'
+    t.integer 'event_image_file_size'
+    t.datetime 'event_image_updated_at'
+    t.index ['organizer_id'], name: 'index_events_on_organizer_id'
   end
 
-  create_table "organizers", force: :cascade do |t|
-    t.string "name"
-    t.text "description"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+  create_table 'organizers', force: :cascade do |t|
+    t.string 'name'
+    t.text 'description'
+    t.datetime 'created_at', null: false
+    t.datetime 'updated_at', null: false
   end
-
 end

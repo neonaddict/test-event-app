@@ -31,13 +31,13 @@ Rails.application.configure do
   config.action_mailer.perform_deliveries = true
   config.action_mailer.delivery_method = :smtp
   config.action_mailer.smtp_settings = {
-  address: 'smtp.gmail.com',
-  port: '587',
-  domain: 'gmail.com',
-  enable_starttls_auto: true,
-  user_name: ENV['EMAIL_USERNAME'],
-  password:  ENV['EMAIL_PASSWORD'],
-  authentication: :plain
+    address: 'smtp.gmail.com',
+    port: '587',
+    domain: 'gmail.com',
+    enable_starttls_auto: true,
+    user_name: ENV['EMAIL_USERNAME'],
+    password:  ENV['EMAIL_PASSWORD'],
+    authentication: :plain
   }
 
   config.paperclip_defaults = {
@@ -46,11 +46,11 @@ Rails.application.configure do
     path: ':class/:attachment/:id_partition/:style/:filename',
     s3_region: ENV['S3_REGION'],
     s3_credentials: {
-        bucket: ENV['S3_BUCKET_NAME'],
-        access_key_id: ENV['AWS_ACCESS_KEY_ID'],
-        secret_access_key: ENV['AWS_SECRET_ACCESS_KEY'],
-        s3_host_name: ENV['S3_HOST_NAME']
-      }
+      bucket: ENV['S3_BUCKET_NAME'],
+      access_key_id: ENV['AWS_ACCESS_KEY_ID'],
+      secret_access_key: ENV['AWS_SECRET_ACCESS_KEY'],
+      s3_host_name: ENV['S3_HOST_NAME']
+    }
   }
 
   # Print deprecation notices to the Rails logger.

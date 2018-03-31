@@ -8,7 +8,7 @@ class CreateEvents < ActiveRecord::Migration[5.1]
       t.datetime :date
       t.belongs_to :organizer, index: true
       t.text :description
-      t.string :link  
+      t.string :link
       t.timestamps
     end
   end

@@ -14,30 +14,28 @@ def seed_image(file_name)
   File.open(File.join(Rails.root, "/app/assets/images/seed/#{file_name}.png"))
 end
 
-10.times do |n|
-    Organizer.create!(name: Faker::SiliconValley.unique.character, description: Faker::Lorem.paragraph(10))
+10.times do |_n|
+  Organizer.create!(name: Faker::SiliconValley.unique.character, description: Faker::Lorem.paragraph(10))
 end
 
-80.times do |n|
-    name = Faker::ProgrammingLanguage.name + [' митап',' конференция'].sample
-    #region = Faker::Address.state
-    city = Faker::Address.city
-    address = Faker::Address.street_address
-    date = Faker::Time.between(1.years.ago, Faker::Time.forward(60, :morning))
-    description =Faker::Lorem.paragraph(30)
-    link = 'https://www.google.com'
-    organizer_id = rand(1..Organizer.all.length)
-    Event.create!(
-        name: name,
-        #region: region,
-        city: city,
-        address: address,
-        date: date,
-        description: description,
-        link: link,
-        organizer_id: organizer_id,
-        event_image: open('https://picsum.photos/300/300/?random')
-    )
-end 
-
-
+80.times do |_n|
+  name = Faker::ProgrammingLanguage.name + [' митап', ' конференция'].sample
+  # region = Faker::Address.state
+  city = Faker::Address.city
+  address = Faker::Address.street_address
+  date = Faker::Time.between(1.years.ago, Faker::Time.forward(60, :morning))
+  description = Faker::Lorem.paragraph(30)
+  link = 'https://www.google.com'
+  organizer_id = rand(1..Organizer.all.length)
+  Event.create!(
+    name: name,
+    # region: region,
+    city: city,
+    address: address,
+    date: date,
+    description: description,
+    link: link,
+    organizer_id: organizer_id,
+    event_image: open('https://picsum.photos/300/300/?random')
+  )
+end
