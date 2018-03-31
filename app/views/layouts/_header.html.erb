@@ -39,10 +39,7 @@
                 </li> !-->
                 <li class="nav-item">
                 <%= form_tag(filter_path, method: :post, class:'form-inline') do %>
-                    <%= label_tag 'Прошедшие' %>
-                    <%= radio_button_tag :par, '<', class: 'custom-control-input' %>
-                    <%= label_tag 'Предстоящие' %>    
-                    <%= radio_button_tag :par, '>', class: 'custom-control-input' %>
+                    <%= select_tag(:par, options_for_select(['Предстоящие','Прошедшие'].zip(['>','<'])), prompt: 'Когда', class: 'form-control')  %>
                     <%= collection_select nil, :city, Event.pluck(:city).uniq.sort, :to_s, :to_s, {prompt: 'Город'}, {class: 'form-control'} %>
                     <%# collection_select nil, :month, I18n.t('date.month_names').drop(1).zip(1..12), :to_s, :to_s, prompt: 'Месяц', class: 'form-control' %>
                     <%= select_tag(:month, options_for_select(I18n.t('date.month_names').drop(1).zip(1..12)), prompt: 'Месяц', class: 'form-control')  %>

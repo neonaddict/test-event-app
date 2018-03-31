@@ -8,12 +8,6 @@
 require 'open-uri'
 require 'open_uri_redirections'
 
-environment_seed_file = File.join(Rails.root, 'db', 'seeds', "#{Rails.env}.rb")
-
-def seed_image(file_name)
-  File.open(File.join(Rails.root, "/app/assets/images/seed/#{file_name}.png"))
-end
-
 10.times do |_n|
   Organizer.create!(name: Faker::SiliconValley.unique.character, description: Faker::Lorem.paragraph(10))
 end

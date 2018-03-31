@@ -1,5 +1,5 @@
 class Organizer < ApplicationRecord
   has_many :events
+  validates_presence_of :name
 
-  accepts_nested_attributes_for :events
 end

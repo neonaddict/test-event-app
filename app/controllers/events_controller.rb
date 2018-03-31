@@ -19,6 +19,7 @@ class EventsController < ApplicationController
   end
 
   def create
+    puts event_params.inspect
     @event = Event.new(event_params)
     if @event.save
       flash[:success] = 'Мероприятие успешно создано!'

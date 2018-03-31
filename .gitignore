@@ -14,6 +14,7 @@
 !/tmp/.keep
 /public/system
 /public/images
+/spec/*
 
 /node_modules
 /yarn-error.log
