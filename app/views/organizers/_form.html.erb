@@ -1,10 +1,10 @@
 <%= form_for @organizer, html: { multipart: true } do |f| %>
   <%= render 'shared/error_messages', object: @organizer %>
 
-  <%= f.label :name %>
+  <%= f.label 'Имя' %>
   <%= f.text_field :name, class: 'form-control' %>
 
-  <%= f.label :description %>
+  <%= f.label 'Описание' %>
   <%= f.text_area :description, class: 'form-control' %>
 
   <%# f.label :events %>

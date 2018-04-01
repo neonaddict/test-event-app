@@ -60,16 +60,7 @@ class EventsController < ApplicationController
     redirect_back fallback_location: root_path
   end
 
-  #def past
-  #  @events = Event.where('date < ?', DateTime.now).paginate(page: params[:page]).order('date DESC')
-  #  render 'index'
-  #end
-
-  #def upcoming
-  #  @events = Event.where('date > ?', DateTime.now).paginate(page: params[:page]).order('date DESC')
-  #  render 'index'
-  #end
-
+  # For filters use scopes, defined in event.rb
   def filter
     @events = Event.city_filter(params[:city]).month_filter(params[:month]).organizer_filter(params[:organizer_id])
     .past_or_upcoming_filter(params[:par]).paginate(page: params[:page], per_page: 18).order('date DESC')
@@ -89,7 +80,7 @@ class EventsController < ApplicationController
   # Confirms that admin is logged in.
   def admin_is_logged_in
     unless logged_in?
-      flash[:danger] = 'Please log in.'
+      flash[:danger] = 'Доступ закрыт'
       redirect_to root_url
     end
   end

@@ -40,6 +40,7 @@ Rails.application.configure do
     authentication: :plain
   }
 
+  # Options for Paperclip
   config.paperclip_defaults = {
     storage: :s3,
     url: ':s3_domain_url',

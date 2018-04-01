@@ -65,7 +65,7 @@ Rails.application.configure do
       s3_host_name: ENV['S3_HOST_NAME']
     }
   }
-
+  # Config for email
   config.action_mailer.raise_delivery_errors = false
   config.action_mailer.perform_deliveries = true
   config.action_mailer.delivery_method = :smtp
