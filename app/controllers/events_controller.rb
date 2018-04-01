@@ -19,7 +19,6 @@ class EventsController < ApplicationController
   end
 
   def create
-    puts event_params.inspect
     @event = Event.new(event_params)
     if @event.save
       flash[:success] = 'Мероприятие успешно создано!'
@@ -44,6 +43,7 @@ class EventsController < ApplicationController
   end
 
   def destroy
+    puts params.inspect
     Event.find_by(id: params[:id]).destroy
     flash[:success] = 'Мероприятие удалено'
     redirect_to events_url

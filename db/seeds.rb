@@ -14,7 +14,6 @@ end
 
 80.times do |_n|
   name = Faker::ProgrammingLanguage.name + [' митап', ' конференция'].sample
-  # region = Faker::Address.state
   city = Faker::Address.city
   address = Faker::Address.street_address
   date = Faker::Time.between(1.years.ago, Faker::Time.forward(60, :morning))

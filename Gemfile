@@ -62,6 +62,7 @@ group :development, :test do
   gem 'rspec-rails', '~> 3.7'
   # gem 'rspec-sidekiq'
   gem 'rails-controller-testing'
+  gem 'shoulda-matchers'
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platforms: %i[mri mingw x64_mingw]
   # Adds support for Capybara system testing and selenium driver

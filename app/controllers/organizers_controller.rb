@@ -42,7 +42,7 @@ class OrganizersController < ApplicationController
   def destroy
     Organizer.find(params[:id]).destroy
     flash[:success] = 'Организатор удален'
-    redirect_to events_url
+    redirect_to organizers_url
   end
 
   private
