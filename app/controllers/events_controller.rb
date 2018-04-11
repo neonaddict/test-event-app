@@ -1,17 +1,11 @@
 class EventsController < ApplicationController
-  before_action :admin_is_logged_in, only: %i[new edit update destroy]
-
+  
   def index
     @events = Event.paginate(page: params[:page], per_page: 18).order('date DESC')
   end
 
   def show
-    if params[:id].to_i != 0
-      @event = Event.find_by(id: params[:id])
-      @organizer = Organizer.find_by(id: @event.organizer_id)
-    else
-      redirect_to root_path
-    end
+    @event = Event.includes(:organizer).find(params[:id])
   end
 
   def new
@@ -33,8 +27,8 @@ class EventsController < ApplicationController
   end
 
   def update
-    @event = Event.find_by(id: params[:id])
-    if @event.update_attributes(event_params)
+    @event = Event.find(params[:id])
+    if @event.update(event_params)
       flash[:success] = 'Мероприятие изменено'
       redirect_to @event
     else
@@ -43,27 +37,29 @@ class EventsController < ApplicationController
   end
 
   def destroy
-    puts params.inspect
-    Event.find_by(id: params[:id]).destroy
-    flash[:success] = 'Мероприятие удалено'
-    redirect_to events_url
+    @event = Event.find(params[:id])
+    if @event.destroy
+      flash[:success] = 'Мероприятие удалено'
+      redirect_to events_url
+    else
+      render 'index'
+    end
   end
 
   def ics
-    @event = Event.find_by(id: params[:id])
-    ics_create(@event)
+    @event = Event.find(params[:id])
+    send_data @event.ics_create.to_ical, type: 'text/calendar', disposition: 'attachment',
+      filename: "#{@event.name}.ics"
   end
 
   def subscribe
     flash[:success] = "Успешно подписаны на напоминания! #{params[:email]}"
     SendEmailWorker.perform_async(params[:email], params[:id])
-    redirect_back fallback_location: root_path
   end
 
   # For filters use scopes, defined in event.rb
   def filter
-    @events = Event.city_filter(params[:city]).month_filter(params[:month]).organizer_filter(params[:organizer_id])
-    .past_or_upcoming_filter(params[:par]).paginate(page: params[:page], per_page: 18).order('date DESC')
+    @events = Event.filter(filter_params).paginate(page: params[:page], per_page: 18)
     if @events.blank?
       flash.now[:warning] = 'Извините, ничего не найдено по вашему запросу :('
     end
@@ -73,15 +69,13 @@ class EventsController < ApplicationController
   private
 
   def event_params
-    params.require(:event).permit(:name, :region, :city, :address,
+    params.require(:event).permit(:name, :city, :address,
                                   :date, :organizer_id, :description, :link, :event_image)
   end
 
-  # Confirms that admin is logged in.
-  def admin_is_logged_in
-    unless logged_in?
-      flash[:danger] = 'Доступ закрыт'
-      redirect_to root_url
-    end
+  def filter_params
+    params.permit(:city, :month, :organizer_id, :par)
   end
+
+  
 end

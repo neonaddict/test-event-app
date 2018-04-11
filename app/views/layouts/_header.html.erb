@@ -31,14 +31,8 @@
     <nav class="navbar navbar-expand-sm navbar-primary bg-light bottom">
          <div class="collapse navbar-collapse navbarBottom">
             <ul class="navbar-nav container">
-                <!-- <li class="nav-item">
-                    <%# link_to "Прошедшие", past_path, class: "nav-link" %>
-                </li>
                 <li class="nav-item">
-                    <%# link_to "Предстоящие", upcoming_path, class: "nav-link" %>
-                </li> !-->
-                <li class="nav-item">
-                <%= form_tag(filter_path, method: :post, class:'form-inline') do %>
+                <%= form_tag(filter_events_url, method: :get, class:'form-inline') do %>
                     <%= select_tag(:par, options_for_select(['Предстоящие','Прошедшие'].zip(['>','<'])), prompt: 'Когда', class: 'form-control')  %>
                     <%= collection_select nil, :city, Event.pluck(:city).uniq.sort, :to_s, :to_s, {prompt: 'Город'}, {class: 'form-control'} %>
                     <%# collection_select nil, :month, I18n.t('date.month_names').drop(1).zip(1..12), :to_s, :to_s, prompt: 'Месяц', class: 'form-control' %>

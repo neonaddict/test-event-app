@@ -34,21 +34,21 @@
       <%= material_icon.face.md_36 %>
       <span>
       <%=
-       link_to_if(@organizer.blank?, '') do
-            link_to @organizer.name, @organizer
+       link_to_if(@event.organizer.blank?, '') do
+            link_to @event.organizer.name, @event.organizer
          end
        %>
        </span>
     </div>
     <div class="block-info button-group ml-auto form-row">
-      <%= form_tag(subscribe_path_url, method: :post, class: 'form-inline') do %>
+      <%= form_tag(subscribe_event_url, method: :post, class: 'form-inline') do %>
         <%= label_tag("Напомнить мне") %>
         <%= text_field_tag :email, nil, placeholder: 'email' %>
         <%= button_tag(type: "submit", class: "btn btn-default") do %>
           <%= material_icon.done %>
         <% end %>
       <% end %>
-      <%= button_to 'Скачать ICS', ics_path_url, method: :get, class: 'btn btn-success form-inline'%>
+      <%= button_to 'Скачать ICS', ics_event_url, method: :get, class: 'btn btn-success form-inline'%>
     </div>
   </div>
 </div>

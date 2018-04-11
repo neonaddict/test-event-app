@@ -3,8 +3,10 @@ Rails.application.routes.draw do
   get    '/admin',   to: 'sessions#new'
   post   '/admin',   to: 'sessions#create'
   delete '/logout',  to: 'sessions#destroy'
-  get 'events/:id/ics', to: 'events#ics', as: 'ics_path'
-  post 'events/:id/subscribe', to: 'events#subscribe', as: 'subscribe_path'
-  post 'events/filter', to: 'events#filter', as: 'filter'
-  resources :events, :organizers
+  resources :events do
+    get :ics, on: :member
+    post :subscribe, on: :member
+    get :filter, on: :collection
+  end
+  resources :organizers
 end

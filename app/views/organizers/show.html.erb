@@ -27,7 +27,7 @@
     <div class="card event-info col-md-12">
       <h2>Организованные мероприятия: </h2>
       <div class="row">
-      <% @events.each do |event| %>
+      <% @organizer.events.each do |event| %>
         <%= link_to event, class: 'col-md-6 border' do %>
           <%= event.name %>,
           <%= l(event.date, format: '%d %B %Y, %-H:%M') %>

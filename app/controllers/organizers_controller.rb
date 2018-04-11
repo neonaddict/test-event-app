@@ -1,13 +1,11 @@
 class OrganizersController < ApplicationController
-  before_action :admin_is_logged_in, only: %i[new edit update destroy]
 
   def index
     @organizers = Organizer.paginate(page: params[:page], per_page: 18)
   end
 
   def show
-    @organizer = Organizer.find_by(id: params[:id])
-    @events = Event.where(organizer_id: @organizer.id).order(date: :desc)
+    @organizer = Organizer.includes(:events).where(id: params[:id]).find(params[:id])
   end
 
   def new
@@ -31,7 +29,7 @@ class OrganizersController < ApplicationController
 
   def update
     @organizer = Organizer.find(params[:id])
-    if @organizer.update_attributes(organizer_params)
+    if @organizer.update(organizer_params)
       flash[:success] = 'Организатор успешно изменен'
       redirect_to @organizer
     else
@@ -40,9 +38,13 @@ class OrganizersController < ApplicationController
   end
 
   def destroy
-    Organizer.find(params[:id]).destroy
-    flash[:success] = 'Организатор удален'
-    redirect_to organizers_url
+    @organizer = Organizer.find(params[:id])
+    if @organizer.destroy
+      flash[:success] = 'Организатор удален'
+      redirect_to organizers_url
+    else
+      render 'edit'
+    end
   end
 
   private
@@ -51,11 +53,5 @@ class OrganizersController < ApplicationController
     params.require(:organizer).permit(:name, :description, :events)
   end
 
-  # Confirms that admin is logged in.
-  def admin_is_logged_in
-    unless logged_in?
-      flash[:danger] = 'Доступ закрыт'
-      redirect_to root_url
-    end
-  end
+  
 end
